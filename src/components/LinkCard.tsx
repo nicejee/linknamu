@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import LinkIcon from "./LinkIcon";
 
 type LinkCardProps = {
   id: string;
   title: string;
   url: string;
-  /** 서버에서 읽어 온 클릭 수. 없으면(DB 오류 등) 표시하지 않습니다. */
-  initialCount?: number;
+  count: number;
+  /** 클릭 직후 화면의 클릭 수를 바로 1 올리기 위해 부모에 알립니다. */
+  onClick: (id: string) => void;
 };
 
 // 페이지 이동을 막지 않도록 sendBeacon 으로 클릭을 기록합니다.
@@ -18,12 +18,10 @@ function trackClick(linkId: string) {
   fetch("/api/clicks", { method: "POST", body, keepalive: true }).catch(() => {});
 }
 
-export default function LinkCard({ id, title, url, initialCount }: LinkCardProps) {
-  const [count, setCount] = useState(initialCount);
-
+export default function LinkCard({ id, title, url, count, onClick }: LinkCardProps) {
   const handleClick = () => {
     trackClick(id);
-    setCount((c) => (c === undefined ? c : c + 1));
+    onClick(id);
   };
 
   return (
@@ -41,14 +39,12 @@ export default function LinkCard({ id, title, url, initialCount }: LinkCardProps
         <LinkIcon id={id} className="size-6 shrink-0" />
         <span className="truncate">{title}</span>
       </span>
-      {count !== undefined && (
-        <span
-          aria-label={`클릭 ${count.toLocaleString("ko-KR")}회`}
-          className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-white/60 px-2 py-0.5 text-xs font-medium text-ink/50 tabular-nums"
-        >
-          {count.toLocaleString("ko-KR")}
-        </span>
-      )}
+      <span
+        aria-label={`클릭 ${count.toLocaleString("ko-KR")}회`}
+        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-white/60 px-2 py-0.5 text-xs font-medium text-ink/50 tabular-nums"
+      >
+        {count.toLocaleString("ko-KR")}회
+      </span>
     </a>
   );
 }
