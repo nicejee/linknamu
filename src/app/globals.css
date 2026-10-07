@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@theme {
+  /* Pretendard 는 layout.tsx 에서 CDN(dynamic subset)으로 불러옵니다. */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+
+  /* 따뜻한 크림 → 살구 톤 */
+  --color-cream: #fffaf2;
+  --color-peach: #ffe9d9;
+  --color-apricot: #ffd5bb;
+  --color-ink: #3b2f2a;
+}

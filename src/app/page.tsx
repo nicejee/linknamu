@@ -17,10 +17,10 @@ export default async function Home() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-md flex-col items-center gap-10 px-4 py-12 sm:py-16">
+    <main className="mx-auto flex w-full max-w-md flex-col items-center gap-12 px-6 py-16 sm:py-24">
       <ProfileHeader name={profile.name} bio={profile.bio} image={profile.image} />
       <LinkList links={profile.links} counts={counts} />
-      <footer className="text-xs text-gray-500">🌳 링크나무</footer>
+      <footer className="text-xs tracking-wide text-ink/40">🌳 링크나무</footer>
     </main>
   );
 }

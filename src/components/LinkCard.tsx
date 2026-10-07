@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LinkIcon from "./LinkIcon";
 
 type LinkCardProps = {
   id: string;
@@ -34,13 +35,16 @@ export default function LinkCard({ id, title, url, initialCount }: LinkCardProps
       onAuxClick={(e) => {
         if (e.button === 1) handleClick(); // 마우스 휠 클릭(새 탭 열기)
       }}
-      className="relative block w-full rounded-2xl border border-emerald-200 bg-white px-16 py-4 text-center font-medium shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
+      className="relative block w-full rounded-3xl border border-white/70 bg-white/45 px-16 py-[18px] text-center font-semibold shadow-[0_4px_24px_-10px_rgba(160,80,40,0.25)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/65 hover:shadow-[0_8px_28px_-10px_rgba(160,80,40,0.3)] active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400"
     >
-      <span className="block truncate">{title}</span>
+      <span className="flex items-center justify-center gap-2">
+        <LinkIcon id={id} className="size-6 shrink-0" />
+        <span className="truncate">{title}</span>
+      </span>
       {count !== undefined && (
         <span
           aria-label={`클릭 ${count.toLocaleString("ko-KR")}회`}
-          className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 tabular-nums"
+          className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-white/60 px-2 py-0.5 text-xs font-medium text-ink/50 tabular-nums"
         >
           {count.toLocaleString("ko-KR")}
         </span>

@@ -8,3 +8,6 @@ next-env.d.ts
 # 환경 변수 (절대 커밋하지 않음)
 .env*.local
 .env
+
+# 개인 프로필 사진 (로컬 전용, 커밋하지 않음)
+public/profile.png
